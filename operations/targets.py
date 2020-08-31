@@ -9,7 +9,7 @@ def put(name, BV):    #add new target and their bounty value (float) | return tr
     c = conn.cursor()
     c.execute("INSERT INTO targets VALUES (NULL, '{}', {}, 0)".format(name, BV))
     conn.commit()
-    conn.close()
+    conn.close() 
 
 def remove(name):     # remove target | return true/false success
     conn = sqlite3.connect(dbpath)
@@ -39,6 +39,13 @@ def incrKC(name):   #increase kill_count for specified target by 1 | return true
     c.execute("UPDATE targets SET kill_count={} WHERE target='{}'".format((currKC+1),name))
     conn.commit()
     conn.close()
+
+def getID(name):
+    conn = sqlite3.connect(dbpath)
+    c = conn.cursor()
+    ret = c.execute("SELECT user_id FROM targets WHERE target='{}'".format(name)).fetchall()
+    conn.close()
+    return ret[0][0]
 
 
 
