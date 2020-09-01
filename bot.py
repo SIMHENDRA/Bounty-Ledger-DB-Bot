@@ -24,3 +24,5 @@ async def on_message(message):
 
 client.run(sys.argv[1])
 
+print("after run reached.")
+
