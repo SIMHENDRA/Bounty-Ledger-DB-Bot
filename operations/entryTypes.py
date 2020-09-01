@@ -2,14 +2,13 @@ import sqlite3
 import datetime
 
 
-
-dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\data\\ledger.db'
+dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\ledger.db'
 
 def put(description):
     conn = sqlite3.connect(dbpath)
     c = conn.cursor()
-    c.execute("INSERT INTO entryTypes VALUE (NULL, '{}')".format(description))
-    c.commit()
+    c.execute("INSERT INTO entryTypes VALUES (NULL, '{}')".format(description))
+    conn.commit()
     conn.close()
 
 def getID(description):

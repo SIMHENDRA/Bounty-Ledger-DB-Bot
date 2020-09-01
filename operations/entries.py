@@ -1,8 +1,8 @@
 import sqlite3
 import datetime
-import entry
 
-dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\data\\ledger.db'
+
+dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\ledger.db'
 # entries(
 #                 entry_id INTEGER PRIMARY KEY, 
 #                 type_id INTEGER, 
@@ -10,25 +10,26 @@ dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\data\\ledge
 #                 target_id INTEGER, 
 #                 points FLOAT, 
 #                 entryDT TIMESTAMP, 
-#                 entryMSG TEXT, 
-
+#                 entryMSG TEXT,
+#                 proof TEXT UNIQUE,
 #                 FOREIGN KEY (type_id) REFERENCES entryTypes(type_id),
 #                 FOREIGN KEY (user_id) REFERENCES users(user_id),
 #                 FOREIGN KEY (target_id) REFERENCES targets(target_id)
 #                 )
 
-def handleEntry(ne):
-    add(ne)
-    updLB(ne)
-
 def add(ne):
     conn = sqlite3.connect(dbpath)
     c = conn.cursor()
-    command = "INSERT INTO entries VALUE (NULL, {}, {}, {}, {}, '{}', '{}')".format(ne.type_id, ne.user_id, ne.target_id, ne.points, datetime.datetime.now(), ne.msg)
+    command = "INSERT INTO entries VALUES (NULL, {}, {}, {}, {}, '{}', '{}', '{}')".format(ne.type_id, ne.user_id, ne.target_id, ne.points, datetime.datetime.now(), ne.msg, ne.proof)
+    #print(command)
     c.execute(command)
-    c.commit()
+    conn.commit()
     conn.close()
 
-def updLB(ne):
-    pass
-
+def getAll():
+    conn = sqlite3.connect(dbpath)
+    c = conn.cursor()
+    command = "SELECT * FROM entries"
+    ret = c.execute(command).fetchall()
+    conn.close()
+    return ret

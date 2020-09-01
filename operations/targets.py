@@ -1,15 +1,20 @@
 import sqlite3
-
+from operations import bountyboard
 # targets(target_id INTEGER PRIMARY KEY, target TEXT, bounty_amt FLOAT, kill_count INTEGER)
 
-dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\data\\ledger.db'
+
+
+
+dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\ledger.db'
 
 def put(name, BV):    #add new target and their bounty value (float) | return true/false success
     conn = sqlite3.connect(dbpath)
     c = conn.cursor()
     c.execute("INSERT INTO targets VALUES (NULL, '{}', {}, 0)".format(name, BV))
     conn.commit()
-    conn.close() 
+    conn.close()
+    bountyboard.addCol(name)
+
 
 def remove(name):     # remove target | return true/false success
     conn = sqlite3.connect(dbpath)
@@ -26,6 +31,7 @@ def getAllTargets():  #List of target entries | return List of Lists
     return ret
 
 def getTarget(name):  #get target entry | return List
+    #print(name)
     conn = sqlite3.connect(dbpath)
     c = conn.cursor()
     ret = c.execute("SELECT * FROM targets WHERE target='{}'".format(name)).fetchall()
@@ -43,10 +49,12 @@ def incrKC(name):   #increase kill_count for specified target by 1 | return true
 def getID(name):
     conn = sqlite3.connect(dbpath)
     c = conn.cursor()
-    ret = c.execute("SELECT user_id FROM targets WHERE target='{}'".format(name)).fetchall()
+    ret = c.execute("SELECT target_id FROM targets WHERE target='{}'".format(name)).fetchall()
     conn.close()
     return ret[0][0]
 
+def getBounty(name):
+    return getTarget(name)[2]
 
 
 # conn = sqlite3.connect(dbpath)
@@ -56,7 +64,6 @@ def getID(name):
 # incrKC("Adam")
 # print(getTarget("Adam"))
 # conn.close()
-
 
 """
 conn = sqlite3.connect(dbpath)

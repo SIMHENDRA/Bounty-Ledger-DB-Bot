@@ -1,9 +1,10 @@
 import sqlite3
 import datetime
+import operations.bountyboard as bountyboard
 
 # users(user_id INTEGER PRIMARY KEY, user TEXT, ign TEXT, join_date TEXT)
 
-dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\data\\ledger.db'
+dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\ledger.db'
 
 def put(user, ign):
     conn = sqlite3.connect(dbpath)
@@ -11,6 +12,7 @@ def put(user, ign):
     c.execute("INSERT INTO users VALUES (NULL, '{}', '{}', '{}')".format(user, ign, datetime.datetime.now()))
     conn.commit()
     conn.close()
+    bountyboard.addRow(getID(user))
 
 def remove(user):
     conn = sqlite3.connect(dbpath)

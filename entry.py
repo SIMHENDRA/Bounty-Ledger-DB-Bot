@@ -1,14 +1,22 @@
-from operations import users, targets, entryTypes
+from operations import targets
+from operations import users
+from operations import entryTypes
 
 class Entry:
     
-    def __init__(self, op, user, target, points, msg):
+    def __init__(self, op, user, target, points, proof, msg):
 
         self.op = op
         self.user = user
         self.target = target
-        self.points = points
         self.msg = msg
+        self.proof = proof
+
+        if points:
+            self.points = points
+        else:
+            self.points = targets.getBounty(target)
+
         self.user_id = users.getID(user)
         self.target_id = targets.getID(target)
         self.type_id = entryTypes.getID(op)
