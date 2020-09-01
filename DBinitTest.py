@@ -1,12 +1,13 @@
 import DB_init
-from operations import targets
-from operations import entryTypes
-from operations import users
-from operations import bountyboard
-from operations import entries
+import targets
+import entryTypes
+import users
+import bountyboard
+import entries
 import handler
 import os
 from tabulate import tabulate
+
 dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\data\\ledger.db'
 
 if input("This will clear current DB. Continue?") != 'Y':

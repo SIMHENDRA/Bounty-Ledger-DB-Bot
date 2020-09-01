@@ -1,6 +1,6 @@
 import sqlite3
 import datetime
-import operations.bountyboard as bountyboard
+import bountyboard
 
 # users(user_id INTEGER PRIMARY KEY, user TEXT, ign TEXT, join_date TEXT)
 

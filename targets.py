@@ -1,5 +1,5 @@
 import sqlite3
-from operations import bountyboard
+import bountyboard
 # targets(target_id INTEGER PRIMARY KEY, target TEXT, bounty_amt FLOAT, kill_count INTEGER)
 
 

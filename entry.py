@@ -1,6 +1,6 @@
-from operations import targets
-from operations import users
-from operations import entryTypes
+import targets
+import users
+import entryTypes
 
 class Entry:
     

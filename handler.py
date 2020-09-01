@@ -1,6 +1,9 @@
 import entry
 import re
-from operations import targets, users, entries, bountyboard
+import targets
+import users
+import entries
+import bountyboard
 import DB_init
 from tabulate import tabulate
 

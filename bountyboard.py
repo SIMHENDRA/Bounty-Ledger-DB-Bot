@@ -1,6 +1,6 @@
 import sqlite3
 import entry
-import operations.targets as targets
+import targets
 
 # leaderboard(user_id, score, FOREIGN KEY (user_id) REFERENCES users(user_id))
 
