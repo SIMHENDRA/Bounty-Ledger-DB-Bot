@@ -30,6 +30,14 @@ def getAllTargets():  #List of target entries | return List of Lists
     conn.close()
     return ret
 
+def getTargetList():
+    ret = []
+    targs = getAllTargets()
+    targs = targs[1:]
+    for i in getAllTargets():
+        ret.append(i[1])
+    return ret
+
 def getTarget(name):  #get target entry | return List
     #print(name)
     conn = sqlite3.connect(dbpath)
@@ -55,6 +63,13 @@ def getID(name):
 
 def getBounty(name):
     return getTarget(name)[2]
+
+def changeBounty(name, BV):
+    conn = sqlite3.connect(dbpath)
+    c = conn.cursor()
+    c.execute("UPDATE targets SET bounty_amt={} WHERE target='{}'".format(BV,name))
+    conn.commit()
+    conn.close()
 
 
 # conn = sqlite3.connect(dbpath)
