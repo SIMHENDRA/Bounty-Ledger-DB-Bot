@@ -18,7 +18,8 @@ async def on_message(message):
             op = handler.handle(comd)
             if op:
                 await message.channel.send("```\n" + op + "\n```")
-        except:
+        except Exception as e: 
+            print(e)
             await message.channel.send("`errrrrrr`")
 
 client.run(sys.argv[1])
