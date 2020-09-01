@@ -2,7 +2,7 @@ import sqlite3
 import datetime
 
 
-dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\ledger.db'
+dbpath = 'ledger.db'
 
 def put(description):
     conn = sqlite3.connect(dbpath)

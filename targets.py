@@ -5,7 +5,7 @@ import bountyboard
 
 
 
-dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\ledger.db'
+dbpath = 'ledger.db'
 
 def put(name, BV):    #add new target and their bounty value (float) | return true/false success
     conn = sqlite3.connect(dbpath)

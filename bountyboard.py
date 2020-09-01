@@ -4,7 +4,7 @@ import targets
 
 # leaderboard(user_id, score, FOREIGN KEY (user_id) REFERENCES users(user_id))
 
-dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\ledger.db'
+dbpath = 'ledger.db'
 
 
 def addRow(user_id):

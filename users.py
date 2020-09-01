@@ -4,7 +4,7 @@ import bountyboard
 
 # users(user_id INTEGER PRIMARY KEY, user TEXT, ign TEXT, join_date TEXT)
 
-dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\ledger.db'
+dbpath = 'ledger.db'
 
 def put(user, ign):
     conn = sqlite3.connect(dbpath)

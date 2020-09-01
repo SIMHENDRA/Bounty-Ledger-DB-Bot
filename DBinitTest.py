@@ -8,7 +8,7 @@ import handler
 import os
 from tabulate import tabulate
 
-dbpath = 'C:\\Users\\Shyam\\Documents\\GitHub\\Bounty-Ledger-DB-Bot\\data\\ledger.db'
+dbpath = 'ledger.db'
 
 if input("This will clear current DB. Continue?") != 'Y':
     quit()
