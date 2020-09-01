@@ -1,6 +1,7 @@
 import handler
 import discord
 from discord.ext import commands
+import sys
 
 
 client = commands.Bot(command_prefix='.')
@@ -20,5 +21,5 @@ async def on_message(message):
         except:
             await message.channel.send("`errrrrrr`")
 
-client.run()
+client.run(sys.argv[1])
 
