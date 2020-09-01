@@ -14,18 +14,25 @@ from tabulate import tabulate
 def handle(ip):
     command = getOp(ip)
     if command == "claim":
+        print("handling claim")
         return handleClaim(ip)
     elif command == "ledger":
+        print("handling ledger")
         return handleLedger(ip)
     elif command == "adduser":
+        print("handling adduser")
         return handleUser(ip)
     elif command == "addtarget":
+        print("handling add target")
         return handleTarget(ip)
     elif command == "changebounty":
+        print("handling bounty change")
         return handleBounty(ip)
     elif command == "board":
+        print("handling board req")
         return handleBoard(ip)
     elif command == "hardreset":
+        print("hard resetting")
         return handleReset(ip)
     else:
         return "errrrrrr"
