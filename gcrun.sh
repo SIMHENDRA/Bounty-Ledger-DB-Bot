@@ -1,4 +1,4 @@
-while ((1=1))
+while :
 do
     echo "starting."
     python bot.py $1
