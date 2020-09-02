@@ -111,3 +111,13 @@ def boardToPrint(board):
         ii = i[1:2] + i[4:]
         rett.append(list(ii))
     return rett
+
+def sbToPrint(board):
+    conn = sqlite3.connect(dbpath)
+    c = conn.cursor()
+    ret = c.execute("SELECT user, score FROM users LEFT JOIN {} USING (user_id) ORDER BY score DESC".format(board)).fetchall()
+    conn.close()
+    header = ["HUNTER", "SCORE"]
+    first = tuple(header)
+    ret.insert(0, first)]
+    return ret

@@ -33,7 +33,9 @@ def handle(ip):
         return handleBounty(ip)
     elif command == "board":
         print("handling board req : " + ip)
-        return handleBoard(ip)
+        ret = handleBoard(ip)
+        print(ret)
+        return ret
     elif command == "hardreset":
         print("hard resetting : " + ip)
         return handleReset(ip)
@@ -43,6 +45,12 @@ def handle(ip):
     elif command == "kills":
         print("getting entry list : " + ip)
         return handleEntryboard(ip)
+    elif command == "targets":
+        print("printing targets" + ip)
+        return handleTargetBoard(ip)
+    elif command == "score":
+        print("printing score" + ip)
+        return handleScoreboard(ip)
     else:
         return "errrrrrr"
 
@@ -58,6 +66,15 @@ def getArgs(ip):
         b = c.replace("'", "")
         inputcmds.append(b)
     return inputcmds 
+
+def handleScoreboard(ip):
+    inputcmds = getArgs(ip)
+    if inputcmds[0] == "alltime":
+        return sbInput("leaderboard")
+    elif inputcmds[0] == "weekly":
+        return sbInput("weeklyboard")
+    return "arg error"
+
 
 def handleClaim(ip):
     ne = claimEntry(ip)
@@ -97,6 +114,8 @@ def handleBoard(ip):
 def handleEntryboard(ip):
     return entriesInput("entryDT")
 
+def handleTargetBoard(ip):
+    return targetInput(ip)
 
 def handleReset(ip):
     DB_init.initDB()
@@ -130,11 +149,17 @@ def lbInput(ip):
     table = bountyboard.boardToPrint(ip)[1:]
     return tabulate(table, headers=bountyboard.boardToPrint(ip)[0])
 
+def sbInput(ip):
+    table = bountyboard.sbToPrint(ip)
+    return tabulate(table[1:], headers=table[0] )
+
 def entriesInput(ip):
     table = entries.entriesToPrint(ip)
     return tabulate(table[1:], headers=table[0])
 
-
+def targetInput(ip):
+    table = targets.targetsToPrint()
+    return tabulate(table[1:], headers=table[0])
 
 
 

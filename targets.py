@@ -72,6 +72,17 @@ def changeBounty(name, BV):
     conn.close()
 
 
+def targetsToPrint():
+    comd = "SELECT target, bounty_amt FROM targets ORDER BY bounty_amt DESC"
+    conn = sqlite3.connect(dbpath)
+    c = conn.cursor()
+    ret = c.execute(comd).fetchall()
+    conn.close()
+    header = ["TARGET", "VALUE"]
+    first = tuple(header)
+    ret.insert(0, first)
+    return ret
+
 # conn = sqlite3.connect(dbpath)
 # c = conn.cursor()
 # ret = c.execute("SELECT * FROM targets").fetchall()
