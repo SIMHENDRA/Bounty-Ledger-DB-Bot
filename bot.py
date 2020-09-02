@@ -12,6 +12,16 @@ async def on_ready():
 
 @client.event
 async def on_message(message):
+    if message.content.startswith('$board'):
+        comd = message.content[1:]
+        try:
+            op = handler.handle(comd)
+            if op:
+                await message.channel.send(content="```board attached```", file=op)
+        except Exception as e: 
+            print(e)
+            await message.channel.send("`errrrrrr`")
+
     if message.content.startswith('$'):
         comd = message.content[1:]
         try:
@@ -21,6 +31,7 @@ async def on_message(message):
         except Exception as e: 
             print(e)
             await message.channel.send("`errrrrrr`")
+
 
 client.run(sys.argv[1])
 
