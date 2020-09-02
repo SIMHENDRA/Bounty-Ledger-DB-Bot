@@ -21,8 +21,9 @@ async def on_message(message):
         except Exception as e: 
             print(e)
             await message.channel.send("`errrrrrr`")
+        return
 
-    if message.content.startswith('$'):
+    elif message.content.startswith('$'):
         comd = message.content[1:]
         try:
             op = handler.handle(comd)

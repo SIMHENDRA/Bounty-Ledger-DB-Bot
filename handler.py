@@ -36,9 +36,9 @@ def handle(ip):
         print("handling board req : " + ip)
         ret = handleBoard(ip)
         print(ret)
-        with open("leaderboard.txt",'w') as opfile:
+        with open("leaderboard.rtf",'w') as opfile:
             print(ret, file=opfile)
-        rett = discord.File("leaderboard.txt")
+        rett = discord.File("leaderboard.rtf")
         return rett
     elif command == "hardreset":
         print("hard resetting : " + ip)
