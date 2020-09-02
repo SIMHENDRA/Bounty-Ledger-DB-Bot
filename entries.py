@@ -33,3 +33,14 @@ def getAll():
     ret = c.execute(command).fetchall()
     conn.close()
     return ret
+
+def entriesToPrint(orderby):
+    comd = "SELECT user, entryDT, entryMSG, proof FROM entries LEFT JOIN users USING (user_id) ORDER BY {} DESC".format(orderby)
+    conn = sqlite3.connect(dbpath)
+    c = conn.cursor()
+    ret = c.execute(comd).fetchall()
+    conn.close()
+    header = ["HUNTER", "DATE", "MESSAGE", "PROOF"]
+    first = tuple(header)
+    ret.insert(0, first)
+    return ret

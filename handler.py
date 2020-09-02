@@ -40,7 +40,9 @@ def handle(ip):
     elif command == "softreset":
         print("soft reseting : " + ip)
         return handleSoftReset(ip)
-
+    elif command == "kills":
+        print("getting entry list : " + ip)
+        return handleEntryboard(ip)
     else:
         return "errrrrrr"
 
@@ -92,6 +94,10 @@ def handleBoard(ip):
         return lbInput("weeklyboard")
     return "arg error"
 
+def handleEntryboard(ip):
+    return entriesInput("entryDT")
+
+
 def handleReset(ip):
     DB_init.initDB()
     return None
@@ -112,7 +118,11 @@ def claimEntry(ip):
 
 def ledgerEntry(ip):
     inputcmds = getArgs(ip)
-    proof = re.findall("https:\/\/streamable\.com\/[\S]+",ip)[0]
+    prooflist = re.findall("http[\S]+",ip)
+    if len(prooflist) == 0:
+        proof = "proofless"
+    else:
+        proof = prooflist[0]
     ret = entry.Entry('ledger',inputcmds[0], 'dummy', float(inputcmds[1]), proof, inputcmds[2])
     return ret
 
@@ -120,7 +130,9 @@ def lbInput(ip):
     table = bountyboard.boardToPrint(ip)[1:]
     return tabulate(table, headers=bountyboard.boardToPrint(ip)[0])
 
-
+def entriesInput(ip):
+    table = entries.entriesToPrint(ip)
+    return tabulate(table[1:], headers=table[0])
 
 
 
