@@ -37,6 +37,9 @@ def handle(ip):
     elif command == "hardreset":
         print("hard resetting")
         return handleReset(ip)
+    elif command == "softreset":
+        print("soft reseting")
+
     else:
         return "errrrrrr"
 
@@ -90,10 +93,19 @@ def handleBoard(ip):
 
 def handleReset(ip):
     DB_init.initDB()
+    return None
+
+def handleSoftReset(ip):
+    bountyboard.reset()
+    return None
 
 def claimEntry(ip):
     inputcmds = getArgs(ip)
-    proof = re.findall("https:\/\/streamable\.com\/[\S]+",ip)[0]
+    prooflist = re.findall("http[\S]+",ip)
+    if len(prooflist) == 0:
+        proof = "proofless"
+    else:
+        proof = prooflist[0]
     ret = entry.Entry('claim',inputcmds[0], inputcmds[1], None, proof, inputcmds[2])
     return ret
 
