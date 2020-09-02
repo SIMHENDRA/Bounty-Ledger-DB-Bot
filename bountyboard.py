@@ -119,5 +119,5 @@ def sbToPrint(board):
     conn.close()
     header = ["HUNTER", "SCORE"]
     first = tuple(header)
-    ret.insert(0, first)]
+    ret.insert(0, first)
     return ret
