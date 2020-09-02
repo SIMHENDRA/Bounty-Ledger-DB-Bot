@@ -17,28 +17,29 @@ from tabulate import tabulate
 def handle(ip):
     command = getOp(ip)
     if command == "claim":
-        print("handling claim")
+        print("handling claim : " + ip)
         return handleClaim(ip)
     elif command == "ledger":
-        print("handling ledger")
+        print("handling ledger : " + ip)
         return handleLedger(ip)
     elif command == "adduser":
-        print("handling adduser")
+        print("handling adduser : " + ip)
         return handleUser(ip)
     elif command == "addtarget":
-        print("handling add target")
+        print("handling add target : " + ip)
         return handleTarget(ip)
     elif command == "changebounty":
-        print("handling bounty change")
+        print("handling bounty change : " + ip)
         return handleBounty(ip)
     elif command == "board":
-        print("handling board req")
+        print("handling board req : " + ip)
         return handleBoard(ip)
     elif command == "hardreset":
-        print("hard resetting")
+        print("hard resetting : " + ip)
         return handleReset(ip)
     elif command == "softreset":
-        print("soft reseting")
+        print("soft reseting : " + ip)
+        return handleSoftReset(ip)
 
     else:
         return "errrrrrr"
