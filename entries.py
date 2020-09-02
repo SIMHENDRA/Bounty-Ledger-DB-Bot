@@ -35,12 +35,12 @@ def getAll():
     return ret
 
 def entriesToPrint(orderby):
-    comd = "SELECT user, entryDT, entryMSG, proof FROM entries LEFT JOIN users USING (user_id) ORDER BY {} DESC".format(orderby)
+    comd = "SELECT user, target, entryMSG, proof, entryDT FROM entries LEFT JOIN users USING (user_id) LEFT JOIN targets USING (target_id) ORDER BY {} DESC".format(orderby)
     conn = sqlite3.connect(dbpath)
     c = conn.cursor()
     ret = c.execute(comd).fetchall()
     conn.close()
-    header = ["HUNTER", "DATE", "MESSAGE", "PROOF"]
+    header = ["HUNTER", "TARGET", "MESSAGE", "PROOF", "DATE"]
     first = tuple(header)
     ret.insert(0, first)
     return ret
