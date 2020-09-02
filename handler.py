@@ -6,6 +6,7 @@ import entries
 import bountyboard
 import DB_init
 from tabulate import tabulate
+import discord
 
 # claim <user> <target> proof <message>
 # ledger <user> <points> proof <message>
@@ -35,7 +36,10 @@ def handle(ip):
         print("handling board req : " + ip)
         ret = handleBoard(ip)
         print(ret)
-        return ret
+        with open("leaderboard.txt",'w') as opfile:
+            print(ret, file=opfile)
+        rett = discord.File("leaderboard.txt")
+        return rett
     elif command == "hardreset":
         print("hard resetting : " + ip)
         return handleReset(ip)
