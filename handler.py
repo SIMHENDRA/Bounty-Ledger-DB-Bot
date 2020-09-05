@@ -36,10 +36,10 @@ def handle(ip):
         print("handling board req : " + ip)
         ret = handleBoard(ip)
         print(ret)
-        f = open("leaderboard.md", 'w')
+        f = open("leaderboard.Rmd", 'w')
         f.write(ret)
         f.close()
-        rett = discord.File("leaderboard.md")
+        rett = discord.File("leaderboard.Rmd")
         return rett
     elif command == "hardreset":
         print("hard resetting : " + ip)
