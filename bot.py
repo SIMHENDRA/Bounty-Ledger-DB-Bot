@@ -17,10 +17,10 @@ async def on_message(message):
         try:
             op = handler.handle(comd)
             if op:
-                await message.channel.send(content="```board attached```", file=op)
+                await message.channel.send(content="```Open attached with your browser.```", file=op)
         except Exception as e: 
             print(e)
-            await message.channel.send("`errrrrrr`")
+            await message.channel.send("```\nerrrrrrr\n```")
         return
 
     elif message.content.startswith('$'):
