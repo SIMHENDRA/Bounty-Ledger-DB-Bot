@@ -37,7 +37,7 @@ def handle(ip):
         ret = handleBoard(ip)
         print(ret)
         f = open("leaderboard.Rmd", 'w')
-        f.write(ret)
+        f.write("```\n" + ret + "```")
         f.close()
         rett = discord.File("leaderboard.Rmd")
         return rett
