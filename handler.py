@@ -7,7 +7,6 @@ import bountyboard
 import DB_init
 from tabulate import tabulate
 import discord
-from datetime import datetime
 
 # claim <user> <target> proof <message>
 # ledger <user> <points> proof <message>
@@ -37,16 +36,8 @@ def handle(ip):
         print("handling board req : " + ip)
         ret = handleBoard(ip)
         print(ret)
-        today = datetime.now()
-        d1 = today.strftime("%d/%m/%Y %H:%M:%S")
-        head = """---
-title: {} Leaderboard
-author: The sheriff
-date: {}
-output: html_document
----""".format(getArgs(ip)[0], d1)
         f = open("leaderboard.Rmd", 'w')
-        f.write(head + "\n```\n" + ret + "\n```")
+        f.write(ret)
         f.close()
         rett = discord.File("leaderboard.Rmd")
         return rett
