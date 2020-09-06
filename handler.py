@@ -37,6 +37,7 @@ def handle(ip):
         print("handling board req : " + ip)
         ret = handleBoard(ip)
         print(ret)
+        today = date.today()
         d1 = today.strftime("%d/%m/%Y")
         head = """---
 title: {} Leaderboard
