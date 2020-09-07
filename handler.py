@@ -35,7 +35,7 @@ def handle(ip):
     elif command == "board":
         print("handling board req : " + ip)
         ret = handleBoard(ip)
-        print(ret)
+        # print(ret)
         f = open("leaderboard.Rmd", 'w')
         f.write(ret)
         f.close()
