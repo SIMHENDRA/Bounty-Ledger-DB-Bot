@@ -19,6 +19,7 @@ class Entry:
 
         self.user_id = users.getID(user)
         self.target_id = targets.getID(target)
+        targets.incrKC(target)
         self.type_id = entryTypes.getID(op)
     
 
