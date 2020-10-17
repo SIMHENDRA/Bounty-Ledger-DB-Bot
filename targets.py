@@ -54,7 +54,7 @@ def incrKC(name):   #increase kill_count for specified target by 1 | return true
     conn.commit()
     conn.close()
 
-def changenotes(name, note):
+def changeNotes(name, note):
     conn = sqlite3.connect(dbpath)
     c = conn.cursor()
     curr = c.execute("UPDATE targets SET notes='{}' WHERE target='{}'".format(note, name))
