@@ -80,12 +80,12 @@ def changeBounty(name, BV):
 
 
 def targetsToPrint():
-    comd = "SELECT target, bounty_amt, kill_count, tk FROM targets ORDER BY bounty_amt DESC"
+    comd = "SELECT target, bounty_amt, kill_count, notes FROM targets ORDER BY bounty_amt DESC"
     conn = sqlite3.connect(dbpath)
     c = conn.cursor()
     ret = c.execute(comd).fetchall()
     conn.close()
-    header = ["TARGET", "VALUE", "DEATHS", "TK"]
+    header = ["TARGET", "VALUE", "DEATHS", "NOTES"]
     first = tuple(header)
     ret.insert(0, first)
     return ret
