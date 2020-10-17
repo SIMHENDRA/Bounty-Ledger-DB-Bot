@@ -20,6 +20,9 @@ def handle(ip):
     if command == "claim":
         print("handling claim : " + ip)
         return handleClaim(ip)
+    elif command == "note":
+        print("changing note : " + ip)
+        return handleNote(ip)
     elif command == "ledger":
         print("handling ledger : " + ip)
         return handleLedger(ip)
@@ -86,6 +89,7 @@ def handleClaim(ip):
     entries.add(ne)
     bountyboard.update(ne)
     return None
+    
 
 def handleLedger(ip):
     ne = ledgerEntry(ip)
@@ -106,6 +110,11 @@ def handleTarget(ip):
 def handleBounty(ip):
     inputcmds = getArgs(ip)
     targets.changeBounty(inputcmds[0],float(inputcmds[1]))
+    return None
+
+def handleNote(ip):
+    inputcmds = getArgs(ip)
+    targets.changeNotes(inputcmds[0],inputcmds[1])
     return None
 
 def handleBoard(ip):
