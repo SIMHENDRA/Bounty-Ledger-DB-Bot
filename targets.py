@@ -10,7 +10,7 @@ dbpath = 'ledger.db'
 def put(name, BV):    #add new target and their bounty value (float) | return true/false success
     conn = sqlite3.connect(dbpath)
     c = conn.cursor()
-    c.execute("INSERT INTO targets VALUES (NULL, '{}', {}, 0)".format(name, BV))
+    c.execute("INSERT INTO targets VALUES (NULL, '{}', {}, 0, 'No tk pts')".format(name, BV))
     conn.commit()
     conn.close()
     bountyboard.addCol(name)
